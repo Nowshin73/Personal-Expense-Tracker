@@ -81,13 +81,16 @@ app.delete('/expenses/:id', async (req, res) => {
 app.patch('/expenses/:id', async (req, res) => {
   const id = req.params.id;
   const filter = { _id: new ObjectId(id) };
-  const {title, amount, category, date} = req.body;
+  const {expenseTitle,expenseAmount, expenseCategory,expenseDate} = req.body;
   const updateExpense = {
     $set: {
-        title, amount, category, date
+        title:expenseTitle,
+       amount: expenseAmount,
+       category: expenseCategory,
+       date: expenseDate
     }
   }
-  const result = await productsCollection.updateOne(filter, updateExpense);
+  const result = await expensesCollection.updateOne(filter, updateExpense);
   res.send(result);
 })
 
