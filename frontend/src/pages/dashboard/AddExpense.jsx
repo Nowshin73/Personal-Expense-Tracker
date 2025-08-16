@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-const AddExpense = () => {
+const AddExpense = ({setExpenses}) => {
    const [startDate, setStartDate] = useState(new Date());
     const addExpense = (e) =>{
         e.preventDefault();
@@ -12,7 +12,7 @@ const AddExpense = () => {
             category: form.category.value,
             date: startDate
         }
-        fetch("https://localhost:5000/expenses",{
+        fetch("http://localhost:5000/expenses",{
           method: 'POST',
           headers:{'content-type': 'application/json'},
           body: JSON.stringify(expense),
@@ -21,11 +21,15 @@ const AddExpense = () => {
          .then(res=>res.json())
           .then(data=>{
             if(data.insertedId){
-              alert.apply("successfully added");
+              alert("successfully added");
             }
           })
-          .catch(error=>console.log(error))
+          
            form.reset();
+      fetch("http://localhost:5000/expenses")
+       .then(res=> res.json())
+       .then(data=>setExpenses(data))
+
     }
     return (
         <div className='relative py-36'>

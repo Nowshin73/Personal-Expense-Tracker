@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AddExpense from './AddExpense'
 import Expenses from './Expenses'
 
 const Dashboard = () => {
+     const [expenses, setExpenses] = useState([]);
+  
+      useEffect(() => {
+          fetch("http://localhost:5000/expenses")
+              .then(res => res.json())
+              .then(data => setExpenses(data))
+      }, [])
   return (
     <div className='bg-gray-900'>
-        <AddExpense></AddExpense>
+        <AddExpense setExpenses={setExpenses}></AddExpense>
         <div className="expenses">
-          <Expenses></Expenses>
+          <Expenses expenses={expenses}></Expenses>
         </div>
     </div>
   )
