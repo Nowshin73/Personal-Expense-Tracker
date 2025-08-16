@@ -13,12 +13,17 @@ const Dashboard = () => {
       }, [expenses])
       
   return (
-    <div className='bg-gray-900'>
+    <div className='bg-gray-900 pb-20'>
         <AddExpense setExpenses={setExpenses}></AddExpense>
         <div className="expenses">
           <Expenses expenses={expenses}></Expenses>
         </div>
+       <div>
+          <p className="mx-auto pb-4 mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+         Expenses by Category
+      </p>
         <ExpenseChart expenses={expenses}></ExpenseChart>
+        </div> 
     </div>
   )
 }
