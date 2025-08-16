@@ -1,10 +1,14 @@
 import React from 'react'
 import AddExpense from './AddExpense'
+import Expenses from './Expenses'
 
 const Dashboard = () => {
   return (
-    <div className='h-[100vh] bg-gray-900'>
+    <div className='bg-gray-900'>
         <AddExpense></AddExpense>
+        <div className="expenses">
+          <Expenses></Expenses>
+        </div>
     </div>
   )
 }

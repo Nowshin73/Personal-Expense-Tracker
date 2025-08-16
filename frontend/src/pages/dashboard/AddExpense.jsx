@@ -1,6 +1,8 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 const AddExpense = () => {
+   const [startDate, setStartDate] = useState(new Date());
     const addExpense = (e) =>{
         e.preventDefault();
         const form = e.target;
@@ -8,16 +10,30 @@ const AddExpense = () => {
             title: form.title.value,
             amount: parseFloat(form.amount.value),
             category: form.category.value,
-            date: form.date.value
+            date: startDate
         }
+        fetch("https://localhost:5000/expenses",{
+          method: 'POST',
+          headers:{'content-type': 'application/json'},
+          body: JSON.stringify(expense),
+        },
+      )
+         .then(res=>res.json())
+          .then(data=>{
+            if(data.insertedId){
+              alert.apply("successfully added");
+            }
+          })
+          .catch(error=>console.log(error))
+           form.reset();
     }
     return (
-        <div className='relative pt-36'>
+        <div className='relative py-36'>
             <div className="mx-auto max-w-2xl  text-center">
                 <h2 className="text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">Add Your Personal Expenses</h2>
                 <p className="mt-2 text-lg/8 text-gray-400">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
             </div>
-             <form action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
+             <form onSubmit={addExpense} className="mx-auto mt-16 max-w-xl sm:mt-20">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
         
           <div className="sm:col-span-2">
@@ -32,7 +48,7 @@ const AddExpense = () => {
                  required 
                  minLength={3}
                  placeholder='Add your expense title'
-                className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
+                className="block w-full rounded-md bg-gray-700  px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
               />
             </div>
           </div>
@@ -48,7 +64,7 @@ const AddExpense = () => {
                 placeholder='Amount'
                 min={1}
                 required
-                className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
+                className="block w-full rounded-md bg-gray-700  px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
               />
             </div>
           </div>
@@ -63,7 +79,7 @@ const AddExpense = () => {
                 type="text"
 
                 
-                className="block w-full rounded-md bg-gray-900 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
+                className="block w-full rounded-md bg-gray-700 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
               >
                  <option value={"Food"}>Food</option>
                  <option value={"Transport"}>Transport</option>
@@ -75,16 +91,16 @@ const AddExpense = () => {
           
           <div className="sm:col-span-2">
             <label htmlFor="date" className="block text-sm/6 font-semibold text-white">
-              Email
+              Date
             </label>
             <div className="mt-2.5">
-              <input
-                id="date"
-                name="date"
-                type="date"
-                
-                className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
-              />
+              <DatePicker id="date"
+                name="date" 
+                className='block w-full rounded-md bg-gray-700 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500'
+                selected={startDate} 
+                onChange={(date) => setStartDate(date)}
+                 />
+              
             </div>
           </div>
          <div className="mt-10">
