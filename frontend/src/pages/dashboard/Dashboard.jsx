@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AddExpense from './AddExpense'
 import Expenses from './Expenses'
+import ExpenseChart from './ExpenseChart';
 
 const Dashboard = () => {
      const [expenses, setExpenses] = useState([]);
@@ -17,6 +18,7 @@ const Dashboard = () => {
         <div className="expenses">
           <Expenses expenses={expenses}></Expenses>
         </div>
+        <ExpenseChart expenses={expenses}></ExpenseChart>
     </div>
   )
 }
