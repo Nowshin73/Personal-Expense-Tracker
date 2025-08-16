@@ -20,15 +20,14 @@ const AddExpense = ({setExpenses}) => {
       )
          .then(res=>res.json())
           .then(data=>{
+              setExpenses((prev) => [...prev, data])
             if(data.insertedId){
               alert("successfully added");
-            }
+            } 
           })
-          
+        
            form.reset();
-      fetch("http://localhost:5000/expenses")
-       .then(res=> res.json())
-       .then(data=>setExpenses(data))
+     
 
     }
     return (

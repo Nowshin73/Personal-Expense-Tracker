@@ -9,7 +9,8 @@ const Dashboard = () => {
           fetch("http://localhost:5000/expenses")
               .then(res => res.json())
               .then(data => setExpenses(data))
-      }, [])
+      }, [expenses])
+      
   return (
     <div className='bg-gray-900'>
         <AddExpense setExpenses={setExpenses}></AddExpense>
