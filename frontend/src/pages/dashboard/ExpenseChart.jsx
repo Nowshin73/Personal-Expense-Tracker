@@ -36,7 +36,7 @@ const ExpenseChart = ({ expenses }) => {  // ✅ default to empty array
   };
 
   return (
-    <div className="max-w-md lg:max-w-lg  mx-auto my-20 bg-gray-800 p-6 rounded-lg shadow-lg">
+    <div className="max-w-md   mx-auto my-20 bg-gray-800 p-6 rounded-lg shadow-lg">
        
     
       <Pie data={data} />

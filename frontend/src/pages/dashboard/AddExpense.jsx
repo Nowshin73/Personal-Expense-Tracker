@@ -31,7 +31,7 @@ const AddExpense = ({setExpenses}) => {
 
     }
     return (
-        <div className='relative py-36'>
+        <div className='relative py-36 px-5'>
             <div className="mx-auto max-w-2xl  text-center">
                 <h2 className="text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">Add Your Personal Expenses</h2>
                 <p className="mt-2 text-lg/8 text-gray-400">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>

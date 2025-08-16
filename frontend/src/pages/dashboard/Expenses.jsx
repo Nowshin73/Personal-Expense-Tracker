@@ -66,8 +66,8 @@ const Expenses = ({ expenses }) => {
           <option value="oldest">Oldest First</option>
         </select>
       </div>
-      <div className="flex flex-col justify-center items-center">
-        <table className='bg-gray-700 text-white p-5 text-center w-full max-w-4xl'>
+      <div className="overflow-x-auto flex flex-col justify-center items-center p-5">
+        <table className='min-w-full bg-gray-700 text-white p-5 text-center w-full max-w-4xl'>
           <thead className="font-bold text-xl text-center p-5 ">
           
               <th className='p-5 border-gray-900 border-4'>No</th>
