@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const bcrypt=  require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
 require('dotenv').config()
 
@@ -29,7 +31,13 @@ const client = new MongoClient(uri, {
 const expensesCollection = client.db("expense_tracker").collection("expenses");
 const userCollection = client.db("expense_tracker").collection("users");
 
+// Secret for JWT
+const JWT_SECRET = "your_super_secret_key";
 
+//user register
+app.post('/users', async (req,res) => {
+  const userInfo = req.body;
+})
 // post expense
 app.post('/expenses', async(req,res)=>{
     const expense = req.body;

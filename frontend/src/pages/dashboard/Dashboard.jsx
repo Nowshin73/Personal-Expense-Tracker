@@ -7,7 +7,7 @@ const Dashboard = () => {
      const [expenses, setExpenses] = useState([]);
   
       useEffect(() => {
-          fetch("http://localhost:5000/expenses")
+          fetch("https://expensetracker-eight-blue.vercel.app/expenses")
               .then(res => res.json())
               .then(data => setExpenses(data))
       }, [expenses])

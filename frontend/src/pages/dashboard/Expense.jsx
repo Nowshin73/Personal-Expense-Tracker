@@ -26,7 +26,7 @@ const Expense = ({ expense, index, refetch }) => {
 
     // ✅ Delete expense
     const deleteExpense = async (id) => {
-        await fetch(`http://localhost:5000/expenses/${id}`, {
+        await fetch(`https://expensetracker-eight-blue.vercel.app/expenses/${id}`, {
             method: "DELETE",
         });
         refetch(); // refresh list
@@ -40,7 +40,7 @@ const Expense = ({ expense, index, refetch }) => {
             expenseCategory,
             expenseDate
         }
-        await fetch(`http://localhost:5000/expenses/${id}`, {
+        await fetch(`https://expensetracker-eight-blue.vercel.app/expenses/${id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData),

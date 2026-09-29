@@ -12,7 +12,7 @@ const AddExpense = ({setExpenses}) => {
             category: form.category.value,
             date: startDate
         }
-        fetch("http://localhost:5000/expenses",{
+        fetch("https://expensetracker-eight-blue.vercel.app/expenses",{
           method: 'POST',
           headers:{'content-type': 'application/json'},
           body: JSON.stringify(expense),
